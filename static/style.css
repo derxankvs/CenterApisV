@@ -1,0 +1,85 @@
+body {
+  background: #0f0f0f;
+  color: #d0fdfd;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 18px; /* base maior para texto geral */
+  line-height: 1.6;
+}
+
+header {
+  text-align: center;
+  padding: 60px 20px; /* mais espaçamento no topo */
+  background: #111;
+}
+
+.logo {
+  width: 20000px; /* logo maior */
+  margin-bottom: 400px;
+}
+
+h1 {
+  font-size: 3.5em; /* título maior */
+  color: #42f5a1;
+  margin-bottom: 12px;
+}
+
+.slogan {
+  font-style: italic;
+  font-size: 1.8em; /* slogan maior */
+  color: #88ffd9;
+}
+
+main {
+  padding: 30px 40px;
+  max-width: 900px; /* para leitura melhor em telas largas */
+  margin: 0 auto;
+}
+
+section {
+  margin-bottom: 50px;
+  background: #1a1a1a;
+  padding: 30px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px #00ffaa55;
+}
+
+h2 {
+  font-size: 2.4em; /* títulos das seções maiores */
+  margin-bottom: 20px;
+  color: #4bf9b1;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  font-size: 1.4em; /* texto da lista maior */
+}
+
+ul li {
+  padding: 12px 0;
+}
+
+.redes-lista li a {
+  color: #00ffe1;
+  text-decoration: none;
+  font-size: 1.5em; /* links maiores */
+  transition: color 0.3s ease;
+}
+
+.redes-lista li a:hover {
+  color: #42f5a1;
+}
+
+p, code {
+  font-size: 1.4em; /* parágrafos e código maior */
+  line-height: 1.7;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+  font-size: 1.2em;
+}

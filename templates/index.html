@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Favicon do foguete -->
+  <link rel="icon" href="/static/rocket.svg" type="image/svg+xml">
+
+  <title>DataNexus – Sua central inteligente de consultas</title>
+
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <!-- Ícone de foguete ao lado do nome -->
+    <h1>
+      <img src="/static/favicon.svg" alt="Logo Foguete" style="width: 32px; vertical-align: middle; margin-right: 8px;">
+      DataNexus
+    </h1>
+    <p class="slogan">Sua central inteligente de consultas</p>
+  </header>
+
+  <main>
+    <section class="sobre">
+      <h2>🧠 Sobre a Plataforma</h2>
+      <p>DataNexus conecta você a diversas APIs de consulta com agilidade, segurança e inteligência.</p>
+    </section>
+
+    <section class="consultas">
+      <h2>📡 Tipos de Consultas</h2>
+      <ul>
+        <li>CPF, CNPJ, Nome, Placa, Telefone</li>
+        <li>IP, Email, RG, DDD, WHOIS, CEP</li>
+        <li>Outros via V3: Logins, Compras, Internet, Obito, etc.</li>
+      </ul>
+    </section>
+
+    <section class="docs">
+      <h2>📖 Como Usar (Docs)</h2>
+      <p>Use nossas rotas:</p>
+      <code>GET /api/v1/cpf/00000000000</code><br>
+      <code>GET /api/v2/placa/ABC1234</code><br>
+      <code>GET /api/v3/logins/exemplo</code>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 DataNexus</p>
+  </footer>
+</body>
+</html>

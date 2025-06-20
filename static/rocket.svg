@@ -1,0 +1,37 @@
+<svg
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g filter="url(#filter0_d)">
+    <path
+      d="M32 2C30.3431 2 29 3.34315 29 5V21L21.7071 28.2929C20.3166 29.6834 20.3166 31.8166 21.7071 33.2071L28 39.5V55C28 56.6569 29.3431 58 31 58H33C34.6569 58 36 56.6569 36 55V39.5L42.2929 33.2071C43.6834 31.8166 43.6834 29.6834 42.2929 28.2929L35 21V5C35 3.34315 33.6569 2 32 2Z"
+      fill="#2F80ED"
+      stroke="#1565C0"
+      stroke-width="2"
+    />
+    <circle cx="32" cy="18" r="5" fill="#B3E5FC" stroke="#0288D1" stroke-width="1" />
+  </g>
+  <path
+    d="M20 55L14 62L21 60L28 67L35 60L42 67L49 60L56 62L50 55H20Z"
+    fill="#FF7043"
+    stroke="#D84315"
+    stroke-width="2"
+    stroke-linejoin="round"
+  />
+  <defs>
+    <filter
+      id="filter0_d"
+      x="12"
+      y="0"
+      width="40"
+      height="70"
+      filterUnits="userSpaceOnUse"
+      color-interpolation-filters="sRGB"
+    >
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+</svg>

@@ -3,3 +3,4 @@ uvicorn
 telethon
 httpx
 python-dotenv
+jinja2

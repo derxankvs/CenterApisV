@@ -3,6 +3,7 @@ import os
 import json
 import asyncio
 import httpx
+import tempfile
 import re
 import uuid
 from dotenv import load_dotenv
@@ -11,6 +12,9 @@ from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from telethon import TelegramClient
+from telethon.tl.types import MessageMediaDocument
+from telethon.tl.types import DocumentAttributeFilename
+from fastapi.responses import FileResponse
 
 # 🔧 Carregar variáveis de ambiente
 load_dotenv("config.env")
@@ -119,29 +123,47 @@ async def enviar_para_telegram(client, group_id, tipo, dado):
             from telethon.events import NewMessage
 
             resposta_final = None
+            arquivo_temp = None
 
             @client.on(NewMessage(chats=group_id))
             async def handler(event):
-                nonlocal resposta_final
-                texto = event.text.lower()
+                nonlocal resposta_final, arquivo_temp
 
-                # Ignora mensagens que dizem "aguarde" ou parecidas
+                # Verifica se a mensagem tem um documento .txt
+                if event.media and isinstance(event.media, MessageMediaDocument):
+                    attrs = event.document.attributes
+                    filename = next((a.file_name for a in attrs if isinstance(a, DocumentAttributeFilename)), None)
+
+                    if filename and filename.endswith(".txt"):
+                        path = await client.download_media(event.document)
+                        arquivo_temp = path
+                        return  # já temos o arquivo, não precisa mais
+
+                # Se for mensagem de texto
+                texto = event.text.lower() if event.text else ""
                 if "aguarde" in texto or "carregando" in texto or "processando" in texto:
                     return
 
-                # Garante que está respondendo à consulta atual
                 if event.reply_to_msg_id == msg.id or dado in texto:
                     resposta_final = event.text
 
-            # Espera até 10 segundos por uma resposta real
+            # Esperar até 10 segundos
             for _ in range(20):
-                if resposta_final:
+                if resposta_final or arquivo_temp:
                     break
                 await asyncio.sleep(0.5)
 
             client.remove_event_handler(handler, NewMessage)
 
-            if resposta_final:
+            if arquivo_temp:
+                # Retorna o .txt como arquivo
+                return FileResponse(
+                    arquivo_temp,
+                    media_type="text/plain",
+                    filename=f"{tipo}_{uuid.uuid4().hex[:6]}.txt"
+                )
+
+            elif resposta_final:
                 texto_limpo = limpar_resposta(resposta_final)
                 return {
                     "tipo": tipo,
@@ -151,10 +173,10 @@ async def enviar_para_telegram(client, group_id, tipo, dado):
                     "site": "https://centerseven7.netlify.app"
                 }
             else:
-                return JSONResponse({"erro": "Sem resposta final após aguardar"}, status_code=504)
+                return JSONResponse({"erro": "Sem resposta após aguardar"}, status_code=504)
 
     except Exception as e:
-        return JSONResponse({"erro": f"Erro ao enviar consulta: {str(e)}"}, status_code=500)
+        return JSONResponse({"erro": f"Erro: {str(e)}"}, status_code=500)
 
 # 🌍 API Externa (whois e ddd)
 @app.get("/externa/{tipo}/{valor}")

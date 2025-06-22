@@ -22,10 +22,10 @@ API_LAYER_KEY = os.getenv("API_LAYER_KEY")
 
 # 🗂️ Sessões e Grupos
 SESSION_V1 = "consultav2.session"
-GROUP_V1 = -1002821746685
+GROUP_V1 = -1001919212067
 
 SESSION_V3 = "telegramv3.session"
-GROUP_V3 = -1002821746685
+GROUP_V3 = -1001919212067
 
 # 🔌 Inicializar clientes Telegram
 client_v1 = TelegramClient(SESSION_V1, API_ID, API_HASH)
